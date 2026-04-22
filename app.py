@@ -1,59 +1,29 @@
-"""Sensei Dash Frontend — Entry Point.
+# IMPORTANT! DO NOT ALTER THE BELOW LINE
+from serving import app, server
 
-Run directly for development::
+# Other Imports
+from flask_login import current_user
 
-    python app.py
+from davinci.dash.boilerplate import create_standard_layout, create_standard_callbacks
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+from dash import Input, Output, State, html
 
-For production, use waitress or gunicorn::
+from layout.main_layout import render_main_layout
+import callbacks  # Register all callbacks
 
-    waitress-serve --port=8051 app:server
-    gunicorn app:server --workers 2 --threads 4 --timeout 120
-"""
+# Define your app UI here
+def render_layout():
+    return render_main_layout()
 
-from __future__ import annotations
+### These two function calls create the sidebar and associated callbacks
+### so that we have consistency across apps.
+### app_name will connect to relevant security groups.
+### It does not necessarily need to match the url path specified in serving.py
+app.layout = create_standard_layout(use_loader=True)
+create_standard_callbacks(app, render_layout, app_name='sensei_dash')
 
-import logging
-import sys
-
-# ---------------------------------------------------------------------------
-# Logging — configure before any other imports
-# ---------------------------------------------------------------------------
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
-    stream=sys.stdout,
-)
-
-logger = logging.getLogger(__name__)
-
-# ---------------------------------------------------------------------------
-# App setup
-# ---------------------------------------------------------------------------
-from serving import app, server  # noqa: F401, E402
-from layout.main_layout import render_main_layout  # noqa: E402
-
-# Register all callbacks by importing the package
-import callbacks  # noqa: F401, E402
-
-# Set the application layout
-app.layout = render_main_layout()
-
-logger.info("Sensei Dash frontend initialized.")
-
-# ---------------------------------------------------------------------------
-# Development server
-# ---------------------------------------------------------------------------
-if __name__ == "__main__":
-    from config import settings
-
-    logger.info(
-        "Starting Dash dev server on %s:%s (debug=%s)",
-        settings.DASH_HOST,
-        settings.DASH_PORT,
-        settings.DASH_DEBUG,
-    )
-    app.run(
-        host=settings.DASH_HOST,
-        port=settings.DASH_PORT,
-        debug=settings.DASH_DEBUG,
-    )
+# For local development only. The app will
+# get called via gunicorn on the Ec2.
+if __name__ == '__main__':
+    app.run(host="localhost", port="8051", debug=True, use_reloader=False)

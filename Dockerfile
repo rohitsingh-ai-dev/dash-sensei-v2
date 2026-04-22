@@ -1,4 +1,4 @@
-FROM 823367020558.dkr.ecr.us-east-1.amazonaws.com/kencologistics/codebase13@sha256:528f1e05bf119f3fe0327fb37e4e66fbedb6813a32da7bbefe1a19b11e2ca9f3
+FROM 823367020558.dkr.ecr.us-east-1.amazonaws.com/kencologistics/codebase13@sha256:2d5f38b1638663162182bb38aea7bbdb3c51ccda2c19d396c18e141ad8ad1ff8
 
 
 COPY ./requirements.txt /app/requirements.txt
