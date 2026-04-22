@@ -1,0 +1,315 @@
+/* ═══════════════════════════════════════════════════════════
+   Sensei V3 Chat UI — Clean, minimal, conversation-first.
+   All classes prefixed cx- to avoid conflicts.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Container (full height, no sidebar) ─────────────────── */
+.cx {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 140px);
+    width: 100%;
+    background: var(--sn-bg-darkest);
+    color: var(--sn-text);
+    overflow: hidden;
+}
+
+/* ── Filter bar ──────────────────────────────────────────── */
+.cx-filters {
+    display: flex;
+    gap: 12px;
+    padding: 8px 20px;
+    background: var(--sn-bg-surface);
+    border-bottom: 1px solid var(--sn-border);
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.cx-filter-wrap {
+    flex: 1 1 0;
+    min-width: 180px;
+    max-width: 300px;
+}
+
+.cx-dd {
+    font-size: 13px;
+    width: 100%;
+}
+
+.cx-new {
+    margin-left: auto;
+    padding: 6px 14px;
+    background: transparent;
+    color: var(--sn-text-dim);
+    border: 1px solid var(--sn-border-mid);
+    border-radius: var(--sn-radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.cx-new:hover { background: var(--sn-bg-hover); color: var(--sn-text-muted); }
+
+/* ── Chat area ───────────────────────────────────────────── */
+.cx-chat {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Spacer pushes messages to bottom when few messages */
+.cx-spacer {
+    flex: 1 1 auto;
+}
+
+/* ── Message row ─────────────────────────────────────────── */
+.cx-row {
+    display: flex;
+    gap: 10px;
+    padding: 4px 24px;
+    align-items: flex-start;
+    max-width: 900px;
+}
+.cx-row-u {
+    flex-direction: row-reverse;
+    margin-left: auto;
+    padding-right: 24px;
+}
+
+/* ── Avatars ─────────────────────────────────────────────── */
+.cx-av {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.cx-av-s { background: var(--sn-accent); color: #fff; }
+.cx-av-u { background: #3d444d; color: var(--sn-text); }
+
+/* ── Bubbles ─────────────────────────────────────────────── */
+.cx-bub {
+    padding: 10px 14px;
+    border-radius: var(--sn-radius-md);
+    font-size: 14px;
+    line-height: 1.55;
+    word-wrap: break-word;
+}
+.cx-bub-s {
+    background: var(--sn-bg-surface);
+    color: #d0d7de;
+    border-bottom-left-radius: 4px;
+}
+.cx-bub-u {
+    background: #1a3a44;
+    color: var(--sn-text);
+    border-bottom-right-radius: 4px;
+}
+.cx-bub-err {
+    background: var(--sn-error-bg);
+    color: var(--sn-error-text);
+    border: 1px solid var(--sn-error-border);
+    border-bottom-left-radius: 4px;
+}
+.cx-bub-typing {
+    background: var(--sn-bg-surface);
+    color: var(--sn-text-ghost);
+    border-bottom-left-radius: 4px;
+    font-style: italic;
+}
+.cx-bub-typing::after {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--sn-text-ghost);
+    border-radius: 50%;
+    margin-left: 6px;
+    animation: blink 1.2s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* ── Result card ─────────────────────────────────────────── */
+.cx-result-card {
+    padding: 4px 24px 4px 62px; /* left padding = avatar + gap */
+    max-width: 900px;
+}
+.cx-result-table {
+    border: 1px solid var(--sn-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+.cx-result-table .dash-table-container {
+    max-height: 350px;
+    overflow: auto;
+}
+
+/* Chart in chat result */
+.cx-result-card .js-plotly-plot {
+    border-radius: var(--sn-radius-sm);
+    overflow: hidden;
+}
+
+/* ── Action buttons (on result card) ─────────────────────── */
+.cx-actions {
+    display: flex;
+    gap: 12px;
+    padding: 2px 0 4px;
+}
+.cx-actions button {
+    background: none;
+    border: none;
+    color: var(--sn-text-ghost);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 0;
+}
+.cx-actions button:hover { color: var(--sn-accent); }
+
+/* ── Inline SQL block (inside result card) ───────────────── */
+.cx-sql-wrap {
+    margin-top: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--sn-border);
+}
+
+.cx-sql-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    background: var(--sn-bg-surface);
+    border-bottom: 1px solid var(--sn-border);
+}
+
+.cx-sql-lang {
+    font-size: 11px;
+    color: var(--sn-text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cx-sql-copy {
+    background: none;
+    border: 1px solid var(--sn-border-mid);
+    color: var(--sn-text-dim);
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cx-sql-copy:hover {
+    background: var(--sn-bg-hover);
+    color: var(--sn-text-muted);
+}
+
+.cx-sql-block {
+    background: var(--sn-bg-darkest);
+    padding: 12px 16px;
+    font-family: var(--sn-font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--sn-text-muted);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 200px;
+    overflow-y: auto;
+    tab-size: 2;
+}
+
+/* Syntax-like color hints (keywords uppercase) */
+.cx-sql-block .kw { color: #ff7b72; }
+.cx-sql-block .fn { color: #d2a8ff; }
+.cx-sql-block .str { color: #a5d6ff; }
+.cx-sql-block .num { color: #79c0ff; }
+
+/* ── Inline save (inside result card) ────────────────────── */
+.cx-save-inline {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    align-items: center;
+}
+.cx-save-inline input {
+    flex: 1;
+    padding: 5px 10px;
+    background: var(--sn-bg-darkest);
+    color: var(--sn-text);
+    border: 1px solid var(--sn-border-mid);
+    border-radius: var(--sn-radius-sm);
+    font-size: 12px;
+    max-width: 300px;
+}
+.cx-save-inline button {
+    padding: 5px 12px;
+    background: var(--sn-accent);
+    color: white;
+    border: none;
+    border-radius: var(--sn-radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+}
+.cx-save-inline button:hover { background: var(--sn-accent-hover); }
+
+.cx-save-ok {
+    color: var(--sn-accent);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ── Input bar ───────────────────────────────────────────── */
+.cx-input-bar {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px 14px;
+    background: var(--sn-bg-surface);
+    border-top: 1px solid var(--sn-border);
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.cx-input {
+    flex: 1;
+    padding: 11px 18px;
+    background: var(--sn-bg-darkest);
+    color: var(--sn-text);
+    border: 1px solid var(--sn-border-mid);
+    border-radius: var(--sn-radius-pill);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.cx-input:focus { border-color: var(--sn-accent); }
+
+.cx-send {
+    padding: 10px 22px;
+    background: var(--sn-accent);
+    color: white;
+    border: none;
+    border-radius: var(--sn-radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+.cx-send:hover { background: var(--sn-accent-hover); }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+.cx-chat::-webkit-scrollbar { width: 5px; }
+.cx-chat::-webkit-scrollbar-track { background: transparent; }
+.cx-chat::-webkit-scrollbar-thumb { background: var(--sn-border-mid); border-radius: 3px; }

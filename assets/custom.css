@@ -1,0 +1,68 @@
+/* Make search input text inside dropdown white */
+.Select input {
+  color: white !important;
+}
+
+/* ── Ingestion tab dropdown fixes ───────────────────────────────────── */
+
+/* Dropdown menu panel: dark background, high z-index, clear boundary */
+.Select-menu-outer {
+  z-index: 100 !important;
+  border: 1px solid var(--sn-accent-alt) !important;
+  border-radius: 0 0 6px 6px !important;
+  margin-top: -1px;
+}
+
+/* Individual option rows in dropdown menu */
+.VirtualizedSelectOption,
+.Select-option {
+  background-color: var(--sn-bg-input) !important;
+  color: white !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid #2a3040 !important;
+  cursor: pointer !important;
+}
+
+/* Hovered option */
+.VirtualizedSelectFocusedOption,
+.Select-option.is-focused {
+  background-color: #2a3a4a !important;
+  color: white !important;
+}
+
+/* Selected option in the menu */
+.Select-option.is-selected {
+  background-color: var(--sn-accent-alt) !important;
+  color: white !important;
+}
+
+/* Dropdown trigger/control area */
+.Select-control {
+  border: 1px solid #555 !important;
+  border-radius: 4px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+}
+
+/* Remove the default underline separator */
+.Select-control .Select-multi-value-wrapper {
+  padding: 0 8px !important;
+}
+
+/* Placeholder text */
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+  line-height: 36px !important;
+  padding-left: 8px !important;
+}
+
+/* Arrow indicator */
+.Select-arrow-zone {
+  padding: 6px 8px !important;
+}
+
+/* Clear visual separation between stacked dropdowns */
+.Select.is-open {
+  z-index: 200 !important;
+  position: relative;
+}

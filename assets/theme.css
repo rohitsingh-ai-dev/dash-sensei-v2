@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════════════
+   Sensei V3 — Design Tokens & Shared Components
+   All variables prefixed sn- to avoid collision with
+   cx- (chat) and rpt- (reports) namespaces.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Backgrounds ──────────────────────────────── */
+  --sn-bg-body:      #202734;
+  --sn-bg-darkest:   #0d1117;
+  --sn-bg-surface:   #161b22;
+  --sn-bg-card:      #333c49;
+  --sn-bg-input:     #1a212a;
+  --sn-bg-tab:       #283345;
+  --sn-bg-hover:     #21262d;
+
+  /* ── Accent / Brand ───────────────────────────── */
+  --sn-accent:       #388A98;
+  --sn-accent-hover: #2d7a87;
+  --sn-accent-alt:   #458e9f;
+
+  /* ── Text ─────────────────────────────────────── */
+  --sn-text:         #e0e0e0;
+  --sn-text-muted:   #c9d1d9;
+  --sn-text-dim:     #8b949e;
+  --sn-text-ghost:   #6e7681;
+
+  /* ── Borders ──────────────────────────────────── */
+  --sn-border:       #21262d;
+  --sn-border-mid:   #30363d;
+  --sn-border-light: #444;
+  --sn-border-input: #555;
+
+  /* ── Danger / Error ───────────────────────────── */
+  --sn-error-bg:     #2d1515;
+  --sn-error-text:   #f0a0a0;
+  --sn-error-border: #4a2020;
+  --sn-danger:       #8b0000;
+
+  /* ── Radii ────────────────────────────────────── */
+  --sn-radius-sm:    6px;
+  --sn-radius-md:    12px;
+  --sn-radius-lg:    15px;
+  --sn-radius-xl:    20px;
+  --sn-radius-pill:  22px;
+
+  /* ── Typography ───────────────────────────────── */
+  --sn-font-mono:    "Cascadia Code", "Fira Code", "JetBrains Mono", "Courier New", monospace;
+
+  /* ── Tab-bar accent (replaces red) ────────────── */
+  --sn-tab-selected-border: var(--sn-accent);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Shared Component Classes
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Tab page wrapper ──────────────────────────── */
+.sn-tab-page {
+  width: 95%;
+  margin: 0 20px;
+}
+
+/* ── Page titles ───────────────────────────────── */
+.sn-tab-title {
+  font-size: 150%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.sn-tab-subtitle {
+  color: var(--sn-text-dim);
+  font-size: 85%;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+/* ── Card ──────────────────────────────────────── */
+.sn-card {
+  background: var(--sn-bg-card);
+  padding: 2vh 2vw;
+  border-radius: var(--sn-radius-xl);
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.sn-card-heading {
+  font-size: 130%;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.sn-card-sub {
+  color: var(--sn-text-dim);
+  font-size: 85%;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+/* ── Buttons ───────────────────────────────────── */
+.sn-btn {
+  background: var(--sn-accent-alt);
+  border: 1px solid gray;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: var(--sn-radius-sm);
+  color: white;
+  font-size: 90%;
+}
+.sn-btn:hover { background: var(--sn-accent); }
+
+.sn-btn-danger {
+  background: var(--sn-danger);
+  border: 1px solid gray;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: var(--sn-radius-sm);
+  color: white;
+  font-size: 90%;
+}
+.sn-btn-danger:hover { background: #a00; }
+
+.sn-btn-secondary {
+  background: #555;
+  border: 1px solid gray;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: var(--sn-radius-sm);
+  color: white;
+  font-size: 90%;
+}
+.sn-btn-secondary:hover { background: #666; }
+
+/* ── Form elements ─────────────────────────────── */
+.sn-textarea {
+  width: 100%;
+  background: var(--sn-bg-input);
+  color: var(--sn-text);
+  border: 1px solid var(--sn-border-input);
+  border-radius: var(--sn-radius-sm);
+  font-family: var(--sn-font-mono);
+  font-size: 12px;
+  padding: 10px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.sn-field-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sn-field-label {
+  color: white;
+  font-size: 90%;
+  flex-shrink: 0;
+}
+
+/* ── Results area ──────────────────────────────── */
+.sn-results-area {
+  width: 100%;
+  margin-top: 20px;
+  color: white;
+}
+
+/* ── Modal overlay ─────────────────────────────── */
+.sn-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sn-modal-content {
+  background: var(--sn-bg-card);
+  border-radius: var(--sn-radius-xl);
+  padding: 24px;
+  width: 60%;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: white;
+}
