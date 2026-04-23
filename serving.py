@@ -7,7 +7,7 @@ from davinci.utils.global_config import SYSTEM
 from davinci.dash.login import login_manager_user_loader_factory, User, DEV_USER
 
 # This will be the url path that your app is available at.
-url_path = "/sensei/"
+url_path = "/sensei_v2/"
 
 app = dash.Dash(
     __name__,

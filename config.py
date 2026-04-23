@@ -26,7 +26,7 @@ class Settings:
     DASH_PORT: int = int(os.getenv("SENSEI_DASH_PORT", "8051"))
     DASH_HOST: str = os.getenv("SENSEI_DASH_HOST", "0.0.0.0")
     DASH_DEBUG: bool = os.getenv("SENSEI_DASH_DEBUG", "false").lower() == "true"
-    URL_BASE_PATHNAME: str = os.getenv("SENSEI_URL_BASE", "/sensei/")
+    URL_BASE_PATHNAME: str = os.getenv("SENSEI_URL_BASE", "/sensei_v2/")
 
     # ── Authentication ──────────────────────────────────────────────────
     AUTH_ENABLED: bool = os.getenv("SENSEI_AUTH_ENABLED", "false").lower() == "true"
